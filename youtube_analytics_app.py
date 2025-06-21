@@ -504,7 +504,7 @@ def video_search_tab():
     if search_button or 'search_results_data' in st.session_state:
         if search_button:
             # Initialize services
-            youtube_service = YouTubeService(api_key)
+            youtube_service = YouTubeService()
             data_processor = DataProcessor()
 
             # Progress tracking
