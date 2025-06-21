@@ -58,8 +58,7 @@ def channel_analysis_tab():
     with st.sidebar:
         st.header("⚙️ Channel Configuration")
 
-        # Fixed API Key
-        api_key = "AIzaSyAT-36ZFqzACrcnb80zbz3yaMDANaa9EQ4"
+       
 
         # Channel ID input
         channel_id = st.text_input(
@@ -163,7 +162,7 @@ def channel_analysis_tab():
     if analyze_button or 'channel_analysis_data' in st.session_state:
         if analyze_button:
             # Initialize services
-            youtube_service = YouTubeService(api_key)
+            youtube_service = YouTubeService()
             data_processor = DataProcessor()
 
             # Progress tracking
