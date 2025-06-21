@@ -403,8 +403,7 @@ def video_search_tab():
     with st.sidebar:
         st.header("⚙️ Search Configuration")
 
-        # Fixed API Key
-        api_key = "AIzaSyAT-36ZFqzACrcnb80zbz3yaMDANaa9EQ4"
+       
 
         # Search query input
         search_query = st.text_input(
@@ -413,6 +412,8 @@ def video_search_tab():
             "Enter keywords to search for videos (e.g., 'python tutorial', '음악', '요리')",
             placeholder="Enter search terms...",
             key="search_query_input")
+            language = st.sidebar.text_input("언어 코드 (예: en, ko, ja)", value="ko")
+            region = st.sidebar.text_input("국가 코드 (예: KR, US, JP)", value="KR")
 
         # Search options
         st.subheader("🎯 Search Filters")
@@ -552,11 +553,14 @@ def video_search_tab():
                 progress_bar.progress(30)
 
                 videos = youtube_service.search_videos(
-                    query=search_query,
-                    max_results=max_results,
-                    duration=duration_param,
-                    published_after=published_after,
-                    order=order_param)
+                query=search_query,
+                max_results=max_results,
+                duration=duration_param,
+                published_after=published_after,
+                order=order_param,
+                relevance_language=language,
+                region_code=region
+                )
 
                 if not videos:
                     st.error(
